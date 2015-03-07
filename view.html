@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View</title>
+</head>
+
+<body>
+
+	<h1>My Items</h1>
+	{{range .MyItems}}
+	<h2>Item: {{.Name}}</h2>
+	<h3>Price: {{.Price}}</h3>
+	<h3>Supplier: {{.Supplier}}</h3>
+	{{else}}
+	<h3>No items in the store</h2>
+	{{end}}
+	<br>
+	
+	<h2>Add Item</h2> 
+	<form action="add" method="POST">
+	<label>Name: <input type="text" name="name"></label>
+	<label>Price: <input type="number" name="price"></label>
+	<input type="submit" name="Add Item">
+	</form>
+
+	<br>
+	<h1>Reservations</h1>
+	{{range .Reservations}}
+	<h2>Item: {{.Name}}</h2>
+	<h3>Price: {{.Price}}</h3>
+	<h3>Supplier: {{.Supplier}}</h3>
+
+	<h2>Buy Item</h2> 
+	<form action="buy" method="POST">
+	<input type="hidden" name="item_id" value="{{.ID}}">
+	<input type="submit" name="Buy">
+	</form>
+
+
+	{{else}}
+	<h2>No items in the store</h2>
+	{{end}}
+
+	<br>
+	<h1>Bought</h1>
+	{{range .Bought}}
+	<h2>Item: {{.Name}}</h2>
+	<h3>Price: {{.Price}}</h3>
+	<h3>Supplier: {{.Supplier}}</h3>
+	{{else}}
+	<h2>No items in the store</h2>
+	{{end}}
+
+	<br>
+	<h1>Inventory</h1>
+	{{range .Inventory}}
+	<h2>Item: {{.Name}}</h2>
+	<h3>Price: {{.Price}}</h3>
+	<h3>Supplier: {{.Supplier}}</h3>
+	<h2>Reserve Item</h2> 
+	<form action="reserve" method="POST">
+	<input type="hidden" name="item_id" value="{{.ID}}">
+	<input type="submit" name="Reserve" value="reserve">
+	</form>
+	{{else}}
+	<h2>No items in the store</h2>
+	{{end}}
+</body>
+</html>
